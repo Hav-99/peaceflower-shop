@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Peace Flowers Shop - Sinjar</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+  <style>
+    /* Reset & base */
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: #fafafa;
+      color: #222;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+    a {
+      color: #0969da;
+      text-decoration: none;
+    }
+    a:hover,
+    a:focus {
+      text-decoration: underline;
+      outline: none;
+    }
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      user-select: none;
+    }
+    /* Layout containers */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    header {
+      background-color: #185a37;
+      color: white;
+      padding: 1rem 0;
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    }
+    nav.nav-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    .logo-area {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .logo-area img {
+      height: 48px;
+      width: 48px;
+      border-radius: 8px;
+      object-fit: contain;
+      filter: drop-shadow(0 0 1px rgba(0,0,0,0.4));
+      user-select: none;
+    }
+    .logo-area a {
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: white;
+      user-select: none;
+    }
+    /* Nav menu */
+    ul.menu {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+      margin: 0;
+      padding: 0;
+    }
+    ul.menu li a {
+      font-weight: 600;
+      font-size: 1rem;
+      color: white;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    ul.menu li a:hover,
+    ul.menu li a:focus {
+      color: #b7e4c7;
+    }
+    /* Mobile menu toggle */
+    .mobile-menu-button {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: white;
+      font-size: 32px;
+    }
+    /* Main banner */
+    .main-banner {
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(135deg, #3b7a57 0%, #185a37 100%);
+      color: white;
+      padding: 120px 24px 72px;
+      text-align: center;
+    }
+    .main-banner img {
+      max-height: 480px;
+      max-width: 480px;
+      margin: 0 auto 24px;
+      border-radius: 24px;
+      box-shadow: 0 14px 48px rgba(0, 0, 0, 0.6);
+      object-fit: cover;
+      user-select: none;
+    }
+    .main-banner h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 0.25rem;
+      user-select: none;
+    }
+    .main-banner p {
+      font-size: 1.35rem;
+      max-width: 560px;
+      margin-left: auto;
+      margin-right: auto;
+      opacity: 0.85;
+      font-weight: 500;
+      user-select: none;
+    }
+    .order-button {
+      margin-top: 32px;
+      background-color: #64b96d;
+      border: none;
+      border-radius: 12px;
+      padding: 14px 36px;
+      font-weight: 700;
+      font-size: 1.2rem;
+      color: white;
+      cursor: pointer;
+      box-shadow: 0 6px 18px #4d914faa;
+      transition: background-color 0.3s ease, transform 0.15s ease;
+    }
+    .order-button:hover,
+    .order-button:focus {
+      background-color: #7ed676;
+      outline: none;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px #379038cc;
+    }
+    /* Flowers Catalogue Section */
+    .catalogue-section {
+      background: white;
+      padding: 56px 24px 96px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .catalogue-title {
+      text-align: center;
+      font-size: 2.8rem;
+      font-weight: 700;
+      margin-bottom: 56px;
+      color: #185a37;
+      user-select: none;
+    }
+    .flowers-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 32px 32px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .flower-card {
+      background: #f9fdf9;
+      border-radius: 20px;
+      box-shadow: 0 6px 12px #a8d5a1cc;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      outline-offset: 2px;
+    }
+    .flower-card:hover,
+    .flower-card:focus-within {
+      transform: translateY(-8px);
+      box-shadow: 0 14px 28px #7db56aba;
+      outline: none;
+    }
+    .flower-card:focus-visible {
+      outline: 3px solid #64b96d;
+    }
+    .flower-image {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      border-bottom: 3px solid #64b96d;
+      border-radius: 20px 20px 0 0;
+      user-select: none;
+    }
+    .flower-info {
+      flex-grow: 1;
+      padding: 24px 20px 32px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .flower-name {
+      font-weight: 700;
+      font-size: 1.4rem;
+      margin-bottom: 10px;
+      color: #185a37;
+      user-select: none;
+    }
+    .flower-price {
+      font-weight: 600;
+      font-size: 1.2rem;
+      color: #438c44;
+      margin-bottom: 22px;
+      user-select: none;
+    }
+    .order-button-card {
+      background-color: #64b96d;
+      border: none;
+      border-radius: 12px;
+      padding: 12px 24px;
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: white;
+      cursor: pointer;
+      box-shadow: 0 4px 12px #4d914faa;
+      transition: background-color 0.3s ease, transform 0.15s ease;
+      align-self: flex-start;
+      text-align: center;
+    }
+    .order-button-card:hover,
+    .order-button-card:focus {
+      background-color: #7ed676;
+      outline: none;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px #379038cc;
+    }
+    /* Footer */
+    footer {
+      background-color: #185a37;
+      color: white;
+      font-size: 0.9rem;
+      padding: 32px 24px;
+      user-select: none;
+    }
+    .footer-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 24px;
+    }
+    .footer-section {
+      flex: 1 1 280px;
+      min-width: 280px;
+    }
+    .footer-section h3 {
+      margin-top: 0;
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+    .footer-address span {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 1.05rem;
+    }
+    .payment-methods span {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 600;
+      font-size: 1.1rem;
+    }
+    /* Payment icons */
+    .payment-icons {
+      display: flex;
+      gap: 16px;
+      margin-top: 12px;
+      align-items: center;
+    }
+    .payment-icons img {
+      height: 44px;
+      width: auto;
+      filter: drop-shadow(0 0 0.5px #a8d5a1);
+      border-radius: 10px;
+      background-color: #64b96d;
+      padding: 8px;
+      user-select: none;
+    }
+    .copyright-section {
+      font-size: 0.95rem;
+      margin-top: 8px;
+    }
+    /* Modal styles */
+    .modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1500;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease;
+    }
+    .modal.show {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .modal-content {
+      background: white;
+      border-radius: 22px;
+      padding: 32px 36px 24px;
+      max-width: 420px;
+      width: 90vw;
+      outline: none;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+      position: relative;
+      font-family: 'Inter', sans-serif;
+    }
+    .modal-close-button {
+      position: absolute;
+      top: 14px;
+      right: 18px;
+      background: none;
+      border: none;
+      font-size: 28px;
+      color: #555;
+      cursor: pointer;
+      transition: color 0.3s ease;
+    }
+    .modal-close-button:hover,
+    .modal-close-button:focus {
+      color: #185a37;
+      outline: none;
+    }
+    .modal-title {
+      font-size: 1.85rem;
+      font-weight: 700;
+      margin-bottom: 24px;
+      color: #185a37;
+      user-select: none;
+    }
+    .modal-form label {
+      display: block;
+      font-weight: 600;
+      color: #185a37;
+      margin-bottom: 8px;
+      user-select: none;
+    }
+    .modal-form input[type="text"],
+    .modal-form input[type="tel"] {
+      width: 100%;
+      padding: 10px 14px;
+      font-size: 1rem;
+      border: 2px solid #64b96d;
+      border-radius: 10px;
+      margin-bottom: 18px;
+      transition: border-color 0.3s ease;
+    }
+    .modal-form input[type="text"]:focus,
+    .modal-form input[type="tel"]:focus {
+      outline: none;
+      border-color: #7ed676;
+      box-shadow: 0 0 6px #7ed676aa;
+    }
+    .modal-form button {
+      background-color: #64b96d;
+      border: none;
+      border-radius: 12px;
+      padding: 14px 0;
+      font-weight: 700;
+      font-size: 1.15rem;
+      color: white;
+      cursor: pointer;
+      width: 100%;
+      box-shadow: 0 6px 18px #4d914faa;
+      transition: background-color 0.3s ease, transform 0.15s ease;
+    }
+    .modal-form button:hover,
+    .modal-form button:focus {
+      background-color: #7ed676;
+      outline: none;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px #379038cc;
+    }
+    /* Responsive navigation menu */
+    @media (max-width: 767px) {
+      ul.menu {
+        display: none;
+        flex-direction: column;
+        gap: 12px;
+        background-color: #2f7a4a;
+        padding: 16px 24px;
+        border-radius: 0 0 12px 12px;
+        position: absolute;
+        top: 68px;
+        right: 0;
+        width: 220px;
+        box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+      }
+      ul.menu.open {
+        display: flex;
+      }
+      .mobile-menu-button {
+        display: block;
+      }
+      nav.nav-bar {
+        position: relative;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="nav-bar" aria-label="Primary navigation">
+      <div class="logo-area">
+        <a href="index.html" aria-label="Peace Flowers Shop homepage">
+          <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/14d96e2b-3094-4d29-9157-8482cdd58ef6.png" alt="Peace Flowers Shop logo" />
+          <span>Peace Flowers Shop</span>
+        </a>
+      </div>
+      <button class="mobile-menu-button" aria-expanded="false" aria-controls="primary-menu" aria-label="Toggle menu">
+        <span class="material-icons">menu</span>
+      </button>
+      <ul class="menu" id="primary-menu">
+        <li><a href="#catalogue" tabindex="0">Flowers Catalogue</a></li>
+        <li><a href="#contact" tabindex="0">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="main-banner" role="banner" aria-label="Shop main flowers banner">
+    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/5d9aecfa-2f2f-4bb7-a2c9-0b8028fd60b7.png" alt="Beautiful bouquet of flowers in pot" />
+    <h1>Welcome to Peace Flowers Shop in Sinjar</h1>
+    <p>Discover handpicked fresh flowers from expert florists. Order your perfect bouquet today.</p>
+    <button class="order-button" role="link" onclick="document.getElementById('catalogue').scrollIntoView({behavior:'smooth'})">Order Now</button>
+  </section>
+
+  <section class="catalogue-section" id="catalogue" aria-labelledby="catalog-title">
+    <h2 class="catalogue-title" id="catalog-title">Flowers Catalogue</h2>
+    <div class="flowers-grid" role="list">
+
+      <article class="flower-card" role="listitem" tabindex="0" data-name="Tulip" data-price="30" data-image="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/5fece166-0dd5-49cf-9830-4c8ea6b5a0eb.png" >
+        <img class="flower-image" src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/9aeb4909-0dce-4b2b-a462-ad7f55e1362f.png" alt="Tulip Flower" />
+        <div class="flower-info">
+          <h3 class="flower-name">Tulip</h3>
+          <p class="flower-price">$30</p>
+          <button class="order-button-card" type="button" aria-label="Order Tulip flower">Order</button>
+        </div>
+      </article>
+
+      <article class="flower-card" role="listitem" tabindex="0" data-name="Rose" data-price="40" data-image="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/01765755-284c-4309-805b-5ec03f7f9d81.png" >
+        <img class="flower-image" src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/f284f3cd-856b-49c7-9623-05d154b3f0d5.png" alt="Rose Flower" />
+        <div class="flower-info">
+          <h3 class="flower-name">Rose</h3>
+          <p class="flower-price">$40</p>
+          <button class="order-button-card" type="button" aria-label="Order Rose flower">Order</button>
+        </div>
+      </article>
+
+      <article class="flower-card" role="listitem" tabindex="0" data-name="Sunflower" data-price="38" data-image="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/c55f273a-76f8-4870-bd05-afa48700c8ff.png" >
+        <img class="flower-image" src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/40c4ce73-6203-4316-bc35-e528f0ee14ce.png" alt="Sunflower" />
+        <div class="flower-info">
+          <h3 class="flower-name">Sunflower</h3>
+          <p class="flower-price">$38</p>
+          <button class="order-button-card" type="button" aria-label="Order Sunflower">Order</button>
+        </div>
+      </article>
+
+      <article class="flower-card" role="listitem" tabindex="0" data-name="Orchid" data-price="55" data-image="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/caf84d34-80ce-4203-846c-47550452a5d5.png" >
+        <img class="flower-image" src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/e0349072-d1fa-4eb9-ac47-4eee2a65821d.png" alt="Orchid" />
+        <div class="flower-info">
+          <h3 class="flower-name">Orchid</h3>
+          <p class="flower-price">$55</p>
+          <button class="order-button-card" type="button" aria-label="Order Orchid flower">Order</button>
+        </div>
+      </article>
+
+      <article class="flower-card" role="listitem" tabindex="0" data-name="Lilies" data-price="45" data-image="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/bc5fe1b0-9ac4-4bb5-aefd-5a15b742096b.png" >
+        <img class="flower-image" src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/f1a4ec2c-e567-408a-ae09-bb7f801dadb1.png" alt="Lilies" />
+        <div class="flower-info">
+          <h3 class="flower-name">Lilies</h3>
+          <p class="flower-price">$45</p>
+          <button class="order-button-card" type="button" aria-label="Order Lilies flower">Order</button>
+        </div>
+      </article>
+
+      <article class="flower-card" role="listitem" tabindex="0" data-name="Daisy" data-price="25" data-image="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/45369344-e90b-4f43-a911-16d21570ac58.png" >
+        <img class="flower-image" src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/ff44f4c3-3ccc-4b03-b057-47d066979c2b.png" alt="Daisy Flowers" />
+        <div class="flower-info">
+          <h3 class="flower-name">Daisy</h3>
+          <p class="flower-price">$25</p>
+          <button class="order-button-card" type="button" aria-label="Order Daisy flower">Order</button>
+        </div>
+      </article>
+
+      <article class="flower-card" role="listitem" tabindex="0" data-name="Carnation" data-price="35" data-image="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/685f3593-5565-4b4a-a030-7940b180636b.png" >
+        <img class="flower-image" src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/39e0860f-45a0-47d3-890e-1757d8b4c387.png" alt="Carnation" />
+        <div class="flower-info">
+          <h3 class="flower-name">Carnation</h3>
+          <p class="flower-price">$35</p>
+          <button class="order-button-card" type="button" aria-label="Order Carnation flower">Order</button>
+        </div>
+      </article>
+
+      <article class="flower-card" role="listitem" tabindex="0" data-name="Alstroemeria" data-price="42" data-image="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/764a58b7-0b44-422b-b1af-5ec061c651c0.png" >
+        <img class="flower-image" src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/aa6751a9-e9d6-4748-b6e5-8d9eaaa45bf2.png" alt="Alstroemeria" />
+        <div class="flower-info">
+          <h3 class="flower-name">Alstroemeria</h3>
+          <p class="flower-price">$42</p>
+          <button class="order-button-card" type="button" aria-label="Order Alstroemeria flower">Order</button>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <footer id="contact" role="contentinfo" aria-label="Footer with contact info and payment methods">
+    <div class="footer-container">
+      <section class="footer-section footer-address" aria-labelledby="footer-contact-title">
+        <h3 id="footer-contact-title">Contact & Location</h3>
+        <span>Location:Iraq, Sinjar,Yarmook Round bound </span>
+        <span>Email: peaceflowersshingal@gmail.com
+</span>
+        <span>Phone: +07878953266</span>
+      </section>
+      <section class="footer-section payment-methods" aria-labelledby="footer-payment-title">
+        <h3 id="footer-payment-title">Payment Methods</h3>
+        <span>FIB, Zain Cash</span>
+        <div class="payment-icons" aria-hidden="true">
+          <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/07d9ad4e-f1ad-4c93-a1fe-730ba6aa8b00.png" alt="FIB payment logo" />
+          <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/6a4b35ef-2ea9-46cb-a9c6-24a9e69dd02c.png" alt="Zain Cash payment logo" />
+        </div>
+      </section>
+        <section class="footer-section footer-social" aria-label="Follow us on social media">
+    <h3>Follow Us</h3>
+    <a href="https://www.tiktok.com/@peace_flowers_shingal?_r=1" target="_blank" rel="noopener" aria-label="TikTok Peace Flowers Shingal">
+      <img src="https://play-lh.googleusercontent.com/Ui_-OW6UJI147ySDX9guWWDiCPSq1vtxoC-xG17BU2FpU0Fi6qkWwuLdpddmT9fqrA" alt="TikTok" style="height:24px; width:auto;" />
+    </a>
+    <a href="https://www.facebook.com/share/1CL16rSoWN/?mibextid=wwXIfr" target="_blank" rel="noopener" aria-label="Facebook Peace Flowers Shingal">
+    <img src="https://www.freeiconspng.com/uploads/facebook-logo-3.png" alt="Facebook" style="height:24px; width:auto;" />
+    </a>
+    <a href="https://www.instagram.com/peace_flowers_sinjar?igsh=ODdkbWF6ZzRocGkz" target="_blank" rel="noopener" aria-label="Instagram Peace Flowers Sinjar">
+     <img src="https://www.pngmart.com/files/13/Instagram-Logo-PNG-Image-1.png" alt="Instagram" style="height:24px; width:auto;" />
+
+    </a>
+  </section>
+
+  <section class="footer-section payment-methods" aria-labelledby="footer-payment-title">
+    <h3 id="footer-payment-title">Payment Methods</h3>
+    <span>FIB, Zain Cash</span>
+    <div class="payment-icons" aria-hidden="true">
+      <img src="https://images.seeklogo.com/logo-png/55/2/fib-new-logo-png_seeklogo-551650.png" alt="FIB payment logo" />
+      <img src="https://images.seeklogo.com/logo-png/51/2/zain-cash-logo-png_seeklogo-519935.png?v=1958566480932840416" alt="Zain Cash payment logo" />
+    </div>
+  </section>
+
+      <section class="footer-section copyright-section" aria-label="Copyright information">
+        <span>© 2025 Peace Flowers Shop. All rights reserved.</span>
+      </section>
+    </div>
+  </footer>
+
+  <!-- Order Modal -->
+  <div class="modal" id="order-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" tabindex="-1">
+    <div class="modal-content">
+      <button class="modal-close-button" aria-label="Close order form">&times;</button>
+      <h2 class="modal-title" id="modal-title">Order Flower</h2>
+      <form class="modal-form" id="order-form" novalidate>
+        <p id="flower-chosen" style="font-weight: 600; font-size: 1.2rem; margin-bottom: 20px; color:#185a37;"></p>
+        <input type="hidden" id="flowerName" name="flowerName" />
+        <label for="customerName">Your Name *</label>
+        <input type="text" id="customerName" name="customerName" placeholder="Enter your full name" required />
+        <label for="phoneNumber">Phone Number *</label>
+        <input type="tel" id="phoneNumber" name="phoneNumber" placeholder="+964 ..." pattern="\\+?\\d{7,15}" required />
+        <label for="location">Your Location *</label>
+        <input type="text" id="location" name="location" placeholder="Enter your city or address" required />
+        <button type="submit">Place Order</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    // Mobile menu toggle
+    const mobileMenuBtn = document.querySelector('.mobile-menu-button');
+    const menu = document.querySelector('.menu');
+    mobileMenuBtn.addEventListener('click', () => {
+      const expanded = mobileMenuBtn.getAttribute('aria-expanded') === 'true' || false;
+      mobileMenuBtn.setAttribute('aria-expanded', !expanded);
+      menu.classList.toggle('open');
+    });
+    window.addEventListener('resize', () => {
+      if(window.innerWidth > 767) {
+        menu.classList.remove('open');
+        mobileMenuBtn.setAttribute('aria-expanded', 'false');
+      }
+    });
+
+    // Modal order form
+    const orderModal = document.getElementById('order-modal');
+    const modalCloseBtn = orderModal.querySelector('.modal-close-button');
+    const orderForm = document.getElementById('order-form');
+    const flowerChosenText = document.getElementById('flower-chosen');
+    const flowerNameInput = document.getElementById('flowerName');
+
+    // Open modal handler
+    document.querySelectorAll('.order-button-card').forEach(button => {
+      button.addEventListener('click', (event) => {
+        const card = event.currentTarget.closest('.flower-card');
+        const flowerName = card.getAttribute('data-name');
+        const flowerPrice = card.getAttribute('data-price');
+        flowerChosenText.textContent = `Ordering: ${flowerName} - $${flowerPrice}`;
+        flowerNameInput.value = flowerName;
+        orderModal.classList.add('show');
+        orderModal.focus();
+        // Clear form inputs
+        orderForm.reset();
+      });
+    });
+
+    // Close modal handler
+    modalCloseBtn.addEventListener('click', () => {
+      orderModal.classList.remove('show');
+    });
+
+    // Close modal on outside click
+    orderModal.addEventListener('click', (e) => {
+      if(e.target === orderModal) {
+        orderModal.classList.remove('show');
+      }
+    });
+
+    // Trap focus inside modal when open
+    orderModal.addEventListener('keydown', (e) => {
+      if(e.key === 'Escape') {
+        orderModal.classList.remove('show');
+      }
+      if (e.key === 'Tab') {
+        const focusableElements = orderModal.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+        const firstElement = focusableElements[0];
+        const lastElement = focusableElements[focusableElements.length - 1];
+
+        if (e.shiftKey) {
+          if(document.activeElement === firstElement) {
+            e.preventDefault();
+            lastElement.focus();
+          }
+        } else {
+          if(document.activeElement === lastElement) {
+            e.preventDefault();
+            firstElement.focus();
+          }
+        }
+      }
+    });
+
+    // Form submit handler
+    orderForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      if (!orderForm.checkValidity()) {
+        orderForm.reportValidity();
+        return;
+      }
+      const customerName = orderForm.customerName.value.trim();
+      const phoneNumber = orderForm.phoneNumber.value.trim();
+      const location = orderForm.location.value.trim();
+      const flowerName = orderForm.flowerName.value;
+      alert(`Thank you, ${customerName}! Your order for ${flowerName} has been received. We will contact you soon at ${phoneNumber} and your location: ${location}.`);
+      orderModal.classList.remove('show');
+    });
+  </script>
+</body>
+</html>
+
